@@ -7,6 +7,7 @@ import {IFormDataProps} from "./types";
 import { Box } from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import {pages} from "../../constants/pages";
+import {isMobile} from "react-device-detect";
 const SearchInput: React.FC = () =>{
     const {search, setSearch} = useContext(SearchContext);
     const nav = useNavigate();
@@ -16,10 +17,12 @@ const SearchInput: React.FC = () =>{
         }
     });
     useEffect(()=>{
-        search && setValue("search", search);
+         setValue("search", search);
     }, [search]);
 
 const onSubmit = ({search}: IFormDataProps)=>{
+    if(!search)
+        return;
     setSearch(search);
     nav(`${pages.results}/${search}`);
 };
@@ -29,7 +32,9 @@ const onSubmit = ({search}: IFormDataProps)=>{
             <Controller
                 name="search"
                 control={control}
-                render={({ field }) =>  <Input fontSize={20}  _placeholder={{ color: 'gray.300' }}
+                render={({ field }) =>
+                    <Input fontSize={isMobile ? "14px" : "20px"}  _placeholder={{ color: 'gray.300' }}
+                                               minWidth={!isMobile ? "300px": "100px"}
                                                     color="gray.50" variant='unstyled' placeholder='type here' {...field} />
                 }
             />

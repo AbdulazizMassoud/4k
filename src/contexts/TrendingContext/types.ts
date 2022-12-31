@@ -6,6 +6,7 @@ export interface ITrendingContext {
 export interface ITrendingItems {
     topic: string
     videos: any[]
+    numberOfSearches: number
 }
 export interface ITrendingProvider {
     children: React.ReactNode

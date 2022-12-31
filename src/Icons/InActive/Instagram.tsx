@@ -1,5 +1,5 @@
 import * as React from "react";
-import {IIconProps} from "./types";
+import {IIconProps} from "../types";
 
 export const Instagram: React.FC<IIconProps> =({width, height, color, id})=>{
     return (

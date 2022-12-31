@@ -9,6 +9,7 @@ export const TrendingProvider: React.FC<ITrendingProvider> = ({children}) => {
     useEffect(()=>{
         const a = {
             topic: "top fifa 2022 players",
+            numberOfSearches: 2000000,
             videos: []
         };
         setTrending([a, a, a, a, a])

@@ -23,8 +23,8 @@ export const Results: React.FC = ()=>{
     }
 
     return (
-        <VStack key={search} height="100%" width="100%" overflow="auto" align="flex-start">
-        <ResultsList/>
+        <VStack key={contextSearch} height="100%" width="100%" overflow="auto" align="flex-start">
+            {contextSearch && <ResultsList/>}
         </VStack>
 
 

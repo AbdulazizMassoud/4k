@@ -1,6 +1,6 @@
 export interface IIconProps {
     width: number
     height: number
-    color: string
+    color?: string
     id?: string
 }

@@ -1,5 +1,6 @@
+
 export interface IResultCardProps {
-    image: string,
+    image?: string,
     link: string,
     title: string,
     domain: string

@@ -2690,6 +2690,18 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
+"@tanstack/react-virtual@^3.0.0-beta.32":
+  version "3.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.0.0-beta.32.tgz#1b5cef1c3b309ee264f7d50f85dac8daab91ff92"
+  integrity sha512-wQh/TKsHOTIbGX/ZqsTdsuRoeFb01D25WU8Bdm3E+SShvExHfpCJCcPSALx7ZcK7V98HAb1TlOAqN7H2jrX5Og==
+  dependencies:
+    "@tanstack/virtual-core" "3.0.0-beta.32"
+
+"@tanstack/virtual-core@3.0.0-beta.32":
+  version "3.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.0.0-beta.32.tgz#260fdfc89113c997c8b894dd4966ece03ff29fe7"
+  integrity sha512-nqIvaLNKGC13+eDmMJ5LceOlpJrMuNEjoNQXCaR53oO6QPhyNf1lGNa155wNkARVcde6v5fH765wsSCHKn9oow==
+
 "@testing-library/dom@^8.5.0":
   version "8.19.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.19.1.tgz#0e2dafd281dedb930bb235eac1045470b4129d0e"

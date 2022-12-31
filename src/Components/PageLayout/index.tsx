@@ -13,7 +13,9 @@ const PageLayout: React.FC<IPageLayoutProps> = ({children}) =>{
             <Box flex={8}>
                 <SearchBar/>
                 <MobileView renderWithFragment>
+                    <Box mt={"20px"}>
                     <SearchList/>
+                    </Box>
                 </MobileView>
 
                 {children}

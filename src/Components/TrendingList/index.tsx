@@ -3,15 +3,15 @@ import {Text, VStack, useTheme} from "@chakra-ui/react";
 import {TrendingItem} from "../TrendingItem";
 import {useContext} from "react";
 import {TrendingContext} from "../../contexts/TrendingContext";
+import { ITrendingListProps } from "./types";
 
-export const TrendingList: React.FC = () =>{
-    const {colors} = useTheme();
+export const TrendingList: React.FC<ITrendingListProps> = ({hideTitle}) =>{
     const {trending} = useContext(TrendingContext);
     return(
-       <VStack spacing="18px" align="flex-start">
-        <Text fontSize="24px" color="gray.300" lineHeight="40px">🔥 trending</Text>
+       <VStack minHeight={"510px"} spacing="14px" align="flex-start">
+           {!hideTitle && <Text fontSize="24px" color="gray.300" lineHeight="40px">🔥 trending</Text>}
            {trending.map((t, i)=> {
-              return <TrendingItem key={t.topic} isFirstTrendingItem={i === 0} numberOfSearches={200000000}
+              return <TrendingItem key={t.topic + i} isFirstTrendingItem={i === 0} numberOfSearches={t.numberOfSearches}
                              title={t.topic} />
            })}
     </VStack>

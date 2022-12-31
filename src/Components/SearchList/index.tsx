@@ -1,76 +1,72 @@
 import {HStack} from "@chakra-ui/layout";
 import {Button, IconButton} from "@chakra-ui/button";
-import {TikTok} from "../../Icons/TitTok";
-import {Instagram} from "../../Icons/Instagram";
-import {Youtube} from "../../Icons/Youtube";
-import {Web} from "../../Icons/Web";
-import {Facebook} from "../../Icons/Facebook";
-import {Pinterest} from "../../Icons/Pinterest";
-import {Twitter} from "../../Icons/Twitter";
+import {TikTok} from "../../Icons/InActive/TitTok";
+import {Instagram} from "../../Icons/InActive/Instagram";
+import {Youtube} from "../../Icons/InActive/Youtube";
+import {Web} from "../../Icons/InActive/Web";
+import {Facebook} from "../../Icons/InActive/Facebook";
+import {Pinterest} from "../../Icons/InActive/Pinterest";
+import {Twitter} from "../../Icons/InActive/Twitter";
 import * as React from "react";
-import { useTheme } from "@chakra-ui/react";
+import {Flex, useTheme} from "@chakra-ui/react";
 import {useContext} from "react";
 import {SearchContext} from "../../contexts/SearchContext";
-import {MouseEventHandler} from "react";
 import {filtersType} from "../../contexts/SearchContext/types";
+import {isMobile} from "react-device-detect";
+import {searchListItemsIcons} from "../../constants/searchList";
 
-export const SearchList: React.FC = ()=>{
-    const theme = useTheme();
+export const SearchList: React.FC = () => {
     const {filter, setFilterType} = useContext(SearchContext);
-    const onClick = (filter: filtersType) =>{
+    const {colors} = useTheme();
+    const onClick = (filter: filtersType) => {
         setFilterType(filter);
     };
-     const getColor = (currentItem: filtersType)=>{
-        return filter === currentItem ? "gray.50" : "gray.500";
-     }
-return (
-
-    <HStack spacing="18px" borderRadius="60">
-
-        <Button onClick={()=> onClick("all")} id="all" color={"gray.700"} bgColor={getColor("all")} width={71} borderRadius="33">all</Button>
-
-        <IconButton onClick={()=> onClick("tiktok")} bgColor={getColor("tiktok")} isRound aria-label='tiktok' icon={<TikTok
-            width={21}
-            height={24}
-            color={theme.colors.gray[700]}/>
-        } />
-        <IconButton onClick={()=> onClick("instagram")}  bgColor={getColor("instagram")} isRound aria-label='instagram' icon={<Instagram
-            width={25}
-            height={25}
-            color={theme.colors.gray[700]}/>
-        } />
-        <IconButton onClick={()=> onClick("youtube")} bgColor={getColor("youtube")} isRound aria-label='youtube' icon={<Youtube
-            width={25}
-            height={20}
-            color={theme.colors.gray[700]}/>
-        } />
-        <IconButton onClick={()=> onClick("web")} bgColor={getColor("web")} isRound aria-label='web' icon={<Web
-            id="web"
-            width={28}
-            height={28}
-            color={theme.colors.gray[700]}/>
-        } />
-        <IconButton onClick={()=> onClick("facebook")} bgColor={getColor("facebook")} isRound aria-label='facebook' icon={<Facebook
-            width={15}
-            height={26}
-            color={theme.colors.gray[700]}/>
-        } />
-        <IconButton onClick={()=> onClick("pinterest")} bgColor={getColor("pinterest")} isRound aria-label='pinterest' icon={<Pinterest
-            width={24}
-            height={28}
-            color={theme.colors.gray[700]}/>
-        } />
-        <IconButton onClick={()=> onClick("twitter")} bgColor={getColor("twitter")} isRound aria-label='twitter' icon={<Twitter
-            width={28}
-            height={23}
-            color={theme.colors.gray[700]}/>
-        } />
+    const isActive = (currentItem: filtersType) => {
+        return filter === currentItem
+    };
+    const iconsSize = isMobile ? "sm" : undefined;
+    const buttons = () => {
+        const size = isMobile ? 24 : 41;
+        return <>
 
 
+            <Button onClick={() => onClick("all")}
+                    id="all"
+                    color={"gray.700"}
+                    bgColor={isActive("all") ? "gray.50" : "gray.300"}
+                    width={isMobile ? 43 : 71}
+                    height={isMobile ? "32px" : undefined}
+                    borderRadius="33px">all</Button>
 
+            {searchListItemsIcons.map(item => {
+                const {name, activeIcon, inActiveIcon} = item;
+                const isActiveIcon = isActive(name);
+                return <IconButton
+                    key={name}
+                    onClick={() => onClick(name)}
+                    size={iconsSize}
+                    _hover={isActiveIcon ? {bg: "transparent"} : undefined}
+                    isRound aria-label={name}
+                    bgColor={isActiveIcon ? "transparent" : "gray.500"}
+                    icon={isActiveIcon ? activeIcon : inActiveIcon(colors.gray[700])}
+                />
+            })}
 
-    </HStack>
+        </>
+    };
+    return (
+        <>
+            {
+                !isMobile ? <HStack spacing="18px" borderRadius="60">
+                        {buttons()}
+                    </HStack>
+                    :
+                    <Flex flexWrap="wrap" gap="10px" justifyContent="flex-start">
+                        {buttons()}
+                    </Flex>
+            }
+        </>
 
-)
+    )
 };
 export default SearchList;
