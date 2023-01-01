@@ -5,7 +5,7 @@ export interface ITrendingContext {
 }
 export interface ITrendingItems {
     topic: string
-    videos: any[]
+    videos?: any[]
     numberOfSearches: number
 }
 export interface ITrendingProvider {

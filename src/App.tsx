@@ -8,7 +8,7 @@ import {RecentlySearchedProvider} from "./contexts/RecentlySearchedContext";
 import {SearchProvider} from "./contexts/SearchContext";
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}search/api/v1`;
 
 function App() {
     return (
