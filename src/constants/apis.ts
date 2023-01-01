@@ -7,7 +7,6 @@ export const getApi = <Response, Query = null>
     let newUrl = url;
     if(query){
         newUrl = `${newUrl}?${queryString.stringify(query)}`;
-
     }
     return axios.get<Response, AxiosResponse<Response, object>, object>(newUrl, config);
 };

@@ -1,4 +1,4 @@
-import {Card, Center, Image, Text, Flex, Avatar, Link, useTheme } from "@chakra-ui/react";
+import {Card, Center, Image, Text, Flex, Avatar, Link } from "@chakra-ui/react";
 import * as React from "react";
 import { IResultCardProps } from "./types";
 import {cardSearchListItems} from "../../constants/searchList";

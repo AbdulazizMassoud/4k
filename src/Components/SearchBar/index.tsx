@@ -1,5 +1,5 @@
 import * as React from "react";
-import {HStack, Button, Input, IconButton, Box} from '@chakra-ui/react'
+import {HStack, Box} from '@chakra-ui/react'
 import {Logo} from "../../Icons/InActive/Logo";
 import {useTheme} from "@chakra-ui/react";
 import SearchList from "../SearchList";
