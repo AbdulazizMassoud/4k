@@ -1,10 +1,9 @@
 import {getApi} from "../constants/apis";
-import axios from "axios";
-import {useState} from "react";
 
 export interface ISearchResponse {
     title: string,
     videos: IVideoDetails[]
+    total_records: number
 }
 export interface ISearchQuery {
     qry: string,

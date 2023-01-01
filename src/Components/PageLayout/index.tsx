@@ -1,6 +1,6 @@
 import * as React from "react";
 import {IPageLayoutProps} from "./types";
-import {Container, Divider, Flex, Text, VStack, Box, HStack} from "@chakra-ui/layout";
+import {Divider, Flex, VStack, Box} from "@chakra-ui/layout";
 import {SearchBar} from "../SearchBar";
 import TrendingList from "../TrendingList";
 import RecentlySearchedList from "../RecentlySearchedList";

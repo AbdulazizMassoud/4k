@@ -7,7 +7,7 @@ import {VStack} from "@chakra-ui/layout";
 
 export const Results: React.FC = ()=>{
     const {search} = useParams<{search: string}>();
-    const {search: contextSearch, setSearch} = useContext(SearchContext);
+    const {search: contextSearch, setSearch, filter} = useContext(SearchContext);
     const nav = useNavigate();
 
     useEffect(()=>{
@@ -23,7 +23,7 @@ export const Results: React.FC = ()=>{
     }
 
     return (
-        <VStack key={contextSearch} height="100%" width="100%" overflow="auto" align="flex-start">
+        <VStack key={contextSearch + filter} height="100%" width="100%" overflow="auto" align="flex-start">
             {contextSearch && <ResultsList/>}
         </VStack>
 

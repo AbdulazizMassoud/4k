@@ -1,6 +1,6 @@
 import {Flex, Image, Spinner} from "@chakra-ui/react";
 import * as React from "react";
-import {useContext, useEffect, useRef, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import ResultCard from "../ResultCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {SearchContext} from "../../contexts/SearchContext";
@@ -8,11 +8,12 @@ import {ISearchQuery, IVideoDetails, searchApi} from "../../apis/searchApi";
 
 const ResultsList: React.FC = () => {
 
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     const [items, setItems] = useState<IVideoDetails[]>([]);
     const [initialLoad, setInitialLoad] = useState(true);
     const {search, filter} = useContext(SearchContext);
     const [isEmpty, setIsEmpty] = useState(false);
+    const [totalRecords, setTotalRecords] = useState(0);
 
     const query: ISearchQuery = {
         qry: search,
@@ -36,20 +37,18 @@ const ResultsList: React.FC = () => {
     }, []);
     const loadFunction = async () => {
         try{
-            console.log(apiQuery, JSON.stringify(query));
             if(JSON.stringify(query) === apiQuery){
                 return;
             }
             setApiQuery(JSON.stringify(query));
             const res = await searchApi(query);
-            setIsEmpty(res.videos.length === 0);
-            setItems([...items, ...res.videos]);
+            const allItems = [...items, ...res.videos];
+            setTotalRecords(res.total_records);
+            setIsEmpty(allItems.length === 0);
+            setItems(allItems);
             setPage(page + 1);
-
         }catch (e) {
             setIsEmpty(true);
-            // @ts-ignore
-            console.log("error", e.response.data);
         }
     };
     if(isEmpty){
@@ -67,7 +66,7 @@ const ResultsList: React.FC = () => {
         <InfiniteScroll
             dataLength={items.length} //This is important field to render the next data
             next={loadFunction}
-            hasMore={items.length < 40}
+            hasMore={items.length < totalRecords}
             loader={<Flex overflow="hidden" justifyContent="center" mt="20px" mb="20px"
             ><Spinner  color="white" size='md'/></Flex>
             }

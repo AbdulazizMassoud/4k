@@ -33,7 +33,7 @@ export const SearchList: React.FC = () => {
             <Button onClick={() => onClick("all")}
                     id="all"
                     color={"gray.700"}
-                    bgColor={isActive("all") ? "gray.50" : "gray.300"}
+                    bgColor={isActive("all") ? "gray.50" : "gray.500"}
                     width={isMobile ? 43 : 71}
                     height={isMobile ? "32px" : undefined}
                     borderRadius="33px">all</Button>
