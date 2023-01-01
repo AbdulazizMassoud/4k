@@ -1,12 +1,5 @@
 import {HStack} from "@chakra-ui/layout";
 import {Button, IconButton} from "@chakra-ui/button";
-import {TikTok} from "../../Icons/InActive/TitTok";
-import {Instagram} from "../../Icons/InActive/Instagram";
-import {Youtube} from "../../Icons/InActive/Youtube";
-import {Web} from "../../Icons/InActive/Web";
-import {Facebook} from "../../Icons/InActive/Facebook";
-import {Pinterest} from "../../Icons/InActive/Pinterest";
-import {Twitter} from "../../Icons/InActive/Twitter";
 import * as React from "react";
 import {Flex, useTheme} from "@chakra-ui/react";
 import {useContext} from "react";

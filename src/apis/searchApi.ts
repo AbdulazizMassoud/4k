@@ -20,5 +20,5 @@ export interface IVideoDetails {
     title: string
 }
 export const searchApi = (query: ISearchQuery)=>{
-  return  getApi<ISearchResponse, ISearchQuery>("search", query).then(res => res.data);
+  return  getApi<ISearchResponse, ISearchQuery>("search/api/v1", query).then(res => res.data);
 };
