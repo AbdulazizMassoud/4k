@@ -7,6 +7,7 @@ import {SearchContext} from "../../contexts/SearchContext";
 import {filtersType} from "../../contexts/SearchContext/types";
 import {isMobile} from "react-device-detect";
 import {searchListItemsIcons} from "../../constants/searchList";
+import useScreenDimensions from "../../hooks/useScreenDimensions";
 
 export const SearchList: React.FC = () => {
     const {filter, setFilterType} = useContext(SearchContext);
@@ -17,17 +18,16 @@ export const SearchList: React.FC = () => {
     const isActive = (currentItem: filtersType) => {
         return filter === currentItem
     };
+    const {width} = useScreenDimensions();
+
     const iconsSize = isMobile ? "sm" : undefined;
     const buttons = () => {
-        const size = isMobile ? 24 : 41;
         return <>
-
-
             <Button onClick={() => onClick("all")}
                     id="all"
                     color={"gray.700"}
                     bgColor={isActive("all") ? "gray.50" : "gray.500"}
-                    width={isMobile ? 43 : 71}
+                    width={isMobile ? "24px" : "40px"}
                     height={isMobile ? "32px" : undefined}
                     borderRadius="33px">all</Button>
 
@@ -47,14 +47,23 @@ export const SearchList: React.FC = () => {
 
         </>
     };
+    const {smallScreen} = useScreenDimensions();
+
     return (
         <>
             {
-                !isMobile ? <HStack spacing="18px" borderRadius="60">
+                !isMobile ? <HStack justifyContent={smallScreen ? "space-between" : "flex-start"} spacing="14px"
+                                    borderRadius="60">
                         {buttons()}
                     </HStack>
                     :
-                    <Flex flexWrap="wrap" gap="10px" justifyContent="flex-start">
+                    <Flex overflow="auto" sx={
+                        {
+                            "&::-webkit-scrollbar": {
+                                display: "none"
+                            }
+                        }
+                    } width={width - 60} gap="10px" justifyContent="flex-start">
                         {buttons()}
                     </Flex>
             }

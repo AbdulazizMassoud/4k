@@ -11,4 +11,4 @@ export interface ISearchProvider {
     children: React.ReactNode
 }
 
-export type filtersType = "all" | "tiktok" | "youtube" | "facebook" | "web" | "twitter" | "pinterest" | "instagram" | "twitch"
+export type filtersType = "all" | "tiktok" | "youtube" | "facebook" | "web" | "twitter" | "pinterest" | "instagram" | "twitch" | "vimeo"

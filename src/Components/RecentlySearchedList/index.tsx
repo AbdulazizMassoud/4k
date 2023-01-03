@@ -11,10 +11,7 @@ const RecentlySearchedList: React.FC<IRecentlySearchedListProps> = ({hideTitle})
     const {recentlySearched} = useContext(RecentlySearchedContext);
     return(
         <VStack minHeight="330px" spacing="18px" minWidth="300px" align="flex-start">
-            {!hideTitle && <HStack align="center">
-                <Search width={24} height={24} color={colors.gray[300]}/>
-                <Text fontSize="24px" lineHeight="40px" color="gray.300">recently searched</Text>
-            </HStack>}
+            {!hideTitle && <Text fontSize="24px" lineHeight="40px" color="gray.300">🧐 recently searched</Text>}
             {
                 recentlySearched.map((t, i)=>(
                     <RecentlySearchedItem key={t.title + i} text={t.title}/>

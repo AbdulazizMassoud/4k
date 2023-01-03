@@ -2,6 +2,7 @@ import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/400.css';
 
 import { extendTheme, StyleFunctionProps } from '@chakra-ui/react'
+import { isMobile } from 'react-device-detect';
 
 const theme = extendTheme({
     colors: {
@@ -21,7 +22,8 @@ const theme = extendTheme({
      global: (props: StyleFunctionProps) => ({
          body: {
              bg: props.theme.colors.gray[700],
-             margin: "20px 30px 50px"
+             margin: "20px 30px 50px",
+             marginLeft: isMobile ? "30px" : "60px"
          }
      })
     },

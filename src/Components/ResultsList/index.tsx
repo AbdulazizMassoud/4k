@@ -5,6 +5,7 @@ import ResultCard from "../ResultCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {SearchContext} from "../../contexts/SearchContext";
 import {ISearchQuery, IVideoDetails, searchApi} from "../../apis/searchApi";
+import { isMobile } from "react-device-detect";
 
 const ResultsList: React.FC = () => {
 
@@ -71,7 +72,7 @@ const ResultsList: React.FC = () => {
             ><Spinner  color="white" size='md'/></Flex>
             }
         >
-            <Flex mt="20px" gap={10} flexWrap="wrap" justifyContent="space-evenly">
+            <Flex mt={!isMobile ? "20px" : 0} gap={isMobile ? 3 : 10} flexWrap="wrap" justifyContent="space-between">
                 {items.length > 0 && items.map((t, i) =>
                     <ResultCard key={t.title + i} domain={t.domain} image={t.img}
                                                                      link={t.link} title={t.title} />)}

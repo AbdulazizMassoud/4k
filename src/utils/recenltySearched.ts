@@ -1,7 +1,7 @@
 export const setRecentlySearchItems = (searchedValue: string) =>{
     let items = getRecentlySearchItems();
 
-    if(items.includes(searchedValue)){
+    if(items.includes(searchedValue.trim())){
         items = items.filter(s=> s !== searchedValue);
     }
     items = [searchedValue, ...items];
