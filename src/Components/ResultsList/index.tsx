@@ -74,8 +74,8 @@ const ResultsList: React.FC = () => {
         >
             <Flex mt={!isMobile ? "20px" : 0} gap={isMobile ? 3 : 10} flexWrap="wrap" justifyContent="space-between">
                 {items.length > 0 && items.map((t, i) =>
-                    <ResultCard key={t.title + i} domain={t.domain} image={t.img}
-                                                                     link={t.link} title={t.title} />)}
+                    <ResultCard key={t.title + i} domain={t.publisher} image={t.thumbnail}
+                                                                     link={t.url} title={t.title} />)}
             </Flex>
 
         </InfiniteScroll>

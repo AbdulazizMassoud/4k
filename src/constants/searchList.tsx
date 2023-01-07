@@ -83,6 +83,13 @@ export const cardSearchListItems: ISearchItems[] = [{
             height={32}
             />
     },
+    {
+        name: "vimeo",
+        icon: <Vimeo
+            width={32}
+            height={32}
+        />,
+    }
 ];
 export const searchListItemsIcons: ISearchListIcons[] = [
     {

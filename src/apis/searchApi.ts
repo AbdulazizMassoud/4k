@@ -12,12 +12,13 @@ export interface ISearchQuery {
     pagesize: number
 }
 export interface IVideoDetails {
-    date: Date
-    domain: string
-    img?: string
-    link: string
+    datePublished: Date
+    publisher: string
+    thumbnail ?: string
+    url: string
     pk: string
     title: string
+    description: string
 }
 export const searchApi = (query: ISearchQuery)=>{
   return  getApi<ISearchResponse, ISearchQuery>("/results", query).then(res => res.data);

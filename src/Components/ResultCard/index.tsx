@@ -14,7 +14,7 @@ const ResultCard: React.FC<IResultCardProps> = ({link, image, title, domain}) =>
             height={32}
         />;
 
-        const item = cardSearchListItems.find(t => domain.includes(t.name));
+        const item = cardSearchListItems.find(t => domain?.toLowerCase().includes(t.name));
         return item ? item.icon : web;
     };
     const st = css`
@@ -35,7 +35,7 @@ const ResultCard: React.FC<IResultCardProps> = ({link, image, title, domain}) =>
                     <Avatar bgColor="transparent" position="absolute" left="10px" top={isMobile ? "-12px" : "-16px"}
                             icon={getIcon()} size={isMobile ? "xs" : "sm"}/>
 
-                    <Box p="20px 10px">
+                    <Box p="20px 10px" width="100%">
                         <Text
                             title={title}
                             css={st}
