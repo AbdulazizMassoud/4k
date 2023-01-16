@@ -1,4 +1,4 @@
-import {Flex, Image, Spinner} from "@chakra-ui/react";
+import {Box, Flex, Image, Spinner} from "@chakra-ui/react";
 import * as React from "react";
 import {useContext, useEffect, useState} from "react";
 import ResultCard from "../ResultCard";
@@ -6,6 +6,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {SearchContext} from "../../contexts/SearchContext";
 import {ISearchQuery, IVideoDetails, searchApi} from "../../apis/searchApi";
 import { isMobile } from "react-device-detect";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+import {css} from "@emotion/react";
+import MobileResultCard from "../MobileResultCard";
 
 const ResultsList: React.FC = () => {
 
@@ -22,6 +25,13 @@ const ResultsList: React.FC = () => {
         page,
         pagesize: 20
     };
+    const wrapperStyle = css`
+    width: 100%;
+    .list-of-videos > div { 
+     width: 100% !important;
+     align-items: center;
+     }
+    `;
 
     const [apiQuery, setApiQuery] = useState("");
 
@@ -64,6 +74,7 @@ const ResultsList: React.FC = () => {
             </Flex>
 
             :
+        <Box width="100%">
         <InfiniteScroll
             dataLength={items.length} //This is important field to render the next data
             next={loadFunction}
@@ -72,13 +83,31 @@ const ResultsList: React.FC = () => {
             ><Spinner  color="white" size='md'/></Flex>
             }
         >
-            <Flex mt={!isMobile ? "20px" : 0} gap={isMobile ? 3 : 10} flexWrap="wrap" justifyContent="space-between">
-                {items.length > 0 && items.map((t, i) =>
-                    <ResultCard key={t.title + i} domain={t.publisher} image={t.thumbnail}
-                                                                     link={t.url} title={t.title} />)}
-            </Flex>
+            <Box css={wrapperStyle} width="100%" mt={!isMobile ? "20px" : 0}>
+
+                <ResponsiveMasonry
+                    columnsCountBreakPoints={{350: 1, 650: 2, 1250: 3, 1525: 4, 1821: 5}}
+                >
+                    <Masonry gutter="30px" className="list-of-videos"  style={{width: "auto"}}>
+                {items.length > 0 && items.map((t, i) =>{
+                    if(isMobile)
+                        return <MobileResultCard  key={t.title + i}
+                                                  videoPreview={t.motionThumbnail}
+                                                  domain={t.publisher} image={t.thumbnail}
+                                            link={t.url} title={t.title} />
+                   return <ResultCard  key={t.title + i}
+                                       videoPreview={t.motionThumbnail}
+                                       domain={t.publisher} image={t.thumbnail}
+                                                                     link={t.url} title={t.title} />
+                })
+                }
+                    </Masonry>
+                </ResponsiveMasonry>
+
+            </Box>
 
         </InfiniteScroll>
+        </Box>
 
     )
 };

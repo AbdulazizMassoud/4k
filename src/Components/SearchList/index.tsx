@@ -19,7 +19,7 @@ export const SearchList: React.FC = () => {
         return filter === currentItem
     };
     const {width} = useScreenDimensions();
-
+    const listWidth = 420;
     const iconsSize = isMobile ? "sm" : undefined;
     const buttons = () => {
         return <>
@@ -63,7 +63,7 @@ export const SearchList: React.FC = () => {
                                 display: "none"
                             }
                         }
-                    } width={width - 60} gap="10px" justifyContent="flex-start">
+                    } width={width - 60 < listWidth ? width - 60 : "100%"} gap="10px" justifyContent={width - 60 < listWidth ? "flex-start" : "center"}>
                         {buttons()}
                     </Flex>
             }

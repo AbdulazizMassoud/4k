@@ -35,6 +35,7 @@ const SearchInput: React.FC = () => {
                     control={control}
                     render={({field}) =>
                         <Input fontSize={isMobile ? "16px" : "20px"}
+                               autoComplete="off"
                                _placeholder={{color: 'gray.300'}}
                                color="gray.50" variant='unstyled' placeholder='type here' {...field} />
                     }

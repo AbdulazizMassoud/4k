@@ -21,9 +21,9 @@ export const SearchBar: React.FC = () => {
     const iconSize = isMobile ? 24 : 32;
     return (
         <HStack pl={25} pr={25} height={isMobile ? "32px" : "63px"} bgColor="gray.600" borderRadius="60">
-            {!isMobile && <Box cursor="pointer" onClick={onClick}>
+            <Box cursor="pointer" onClick={onClick}>
                 <Logo width={iconSize} height={iconSize} color={theme.colors.black}/>
-            </Box>}
+            </Box>
             <SearchInput/>
             {
                 (!isMobile && largeScreen) &&

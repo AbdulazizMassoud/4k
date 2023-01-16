@@ -19,6 +19,7 @@ export interface IVideoDetails {
     pk: string
     title: string
     description: string
+    motionThumbnail?: string
 }
 export const searchApi = (query: ISearchQuery)=>{
   return  getApi<ISearchResponse, ISearchQuery>("/results", query).then(res => res.data);
