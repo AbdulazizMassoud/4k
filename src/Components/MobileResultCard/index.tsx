@@ -28,43 +28,49 @@ const MobileResultCard: React.FC<IResultCardProps> = ({link, image, title, domai
    word-wrap: "unset";
     `;
     const videoStyle = css`
+        background-color: transparent;
+        overflow: hidden;
+
     &  video {
     height: 100%;
+    width: 100%;
     border-radius: 5px;
     }
     `;
 
-    const imgHeight = React.useMemo(()=>{
+    const imgHeight = React.useMemo(() => {
         const item = cardSearchListItems.find(t => domain?.toLowerCase().includes(t.name));
         return item?.name === "tiktok" ? "381px" : "145px";
-    },[]);
+    }, []);
     return (
-        <Link width={"235px"} href={link} isExternal>
-            <Card css={videoStyle} cursor="pointer" borderRadius="5px" width={"235px"}>
-                { videoPreview ? <HoverVideoPlayer
-                        videoSrc={videoPreview}
-                        style={{
-                            width: "100%",
-                            height: imgHeight,
-                            borderRadius: "5px",
-                            zIndex: 0
-                        }}
-                        loadingOverlay={<Flex overflow="hidden" justifyContent="center" mt="20px" mb="20px"
-                        ><Spinner  color="white" size='md'/></Flex>}
-                        pausedOverlay={
-                            <Image borderRadius="5px" width={"235px"} height={imgHeight}
-                                   src={image && image !== "" ? image : "/no_image_icon.png"}/>                    }
-                    /> :
-                    <Image borderRadius="5px" width={"235px"} height={imgHeight}
-                           src={image && image !== "" ? image : "/no_image_icon.png"}/>
-                }
+        <Card css={videoStyle} cursor="pointer" borderRadius="5px" width={"245px"}>
+            {videoPreview ? <HoverVideoPlayer
+                    videoSrc={videoPreview}
+                    style={{
+                        width: "100%",
+                        height: imgHeight,
+                        borderRadius: "5px",
+                        zIndex: 0
+                    }}
+                    controls
+                    controlsList="nodownload noplaybackrate nofullscreen"
+                    loadingOverlay={<Flex overflow="hidden" justifyContent="center" mt="20px" mb="20px"
+                    ><Spinner color="white" size='md'/></Flex>}
+                    pausedOverlay={
+                        <Image borderRadius="5px" width={"245px"} height={imgHeight}
+                               src={image && image !== "" ? image : "/no_image_icon.png"}/>}
+                /> :
+                <Image borderRadius="5px" width={"245px"} height={imgHeight}
+                       src={image && image !== "" ? image : "/no_image_icon.png"}/>
+            }
 
 
-                {videoPreview && <Box position="absolute" top="10px" right="10px" >
-                    <Video width={18} height={18} color="#fff"/>
-                </Box>}
+            {videoPreview && <Box position="absolute" top="25px" right="10px">
+                <Video width={18} height={18} color="#fff"/>
+            </Box>}
+            <Link width={"245px"} href={link} isExternal>
 
-                <Flex position="relative" borderRadius="5px" bgColor="black" height={"65px" }>
+                <Flex position="relative" borderRadius="5px" bgColor="black" height={"65px"}>
                     <Avatar bgColor="transparent" position="absolute" left="10px" top={"-12px"}
                             icon={getIcon()} size={"xs"}/>
 
@@ -78,8 +84,8 @@ const MobileResultCard: React.FC<IResultCardProps> = ({link, image, title, domai
                             color="white">{title}</Text>
                     </Box>
                 </Flex>
-            </Card>
-        </Link>
+            </Link>
+        </Card>
     )
 };
 export default MobileResultCard;

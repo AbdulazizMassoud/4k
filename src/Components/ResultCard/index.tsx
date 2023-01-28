@@ -28,6 +28,7 @@ const ResultCard: React.FC<IResultCardProps> = ({link, image, title, domain, vid
    word-wrap: "unset";
     `;
     const videoStyle = css`
+    background-color: transparent;
     &  video {
     height: 100%;
     border-radius: 5px;
@@ -48,6 +49,9 @@ const ResultCard: React.FC<IResultCardProps> = ({link, image, title, domain, vid
                         borderRadius: "5px",
                         zIndex: 0
                     }}
+                    controls
+                    controlsList="nodownload noplaybackrate noseeking nofullscreen"
+                    preload="metadata"
                     loadingOverlay={<Flex overflow="hidden" justifyContent="center" mt="20px" mb="20px"
                     ><Spinner  color="white" size='md'/></Flex>}
                     pausedOverlay={
