@@ -22,6 +22,9 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+COPY cert.crt /etc/nginx/sites-available/cert.crt
+COPY ssl.key /etc/nginx/sites-available/ssl.key
+
+EXPOSE 80 443
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
